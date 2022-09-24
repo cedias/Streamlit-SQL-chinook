@@ -4,16 +4,17 @@ import sqlite3 as sql
 import plotly.express as pex
 
 
+st.set_page_config(page_title="SQL Dashboard", page_icon=None, layout="wide", initial_sidebar_state="auto", menu_items=None)
 st.title("SQL Dashboard")
 
 ## wrap query in a form
 
-
+with st.expander("Chinook Schema",expanded=False):
+    st.image("https://www.sqlitetutorial.net/wp-content/uploads/2015/11/sqlite-sample-database-color.jpg")
 
 with st.form(key="query"):
     query = st.text_area("Enter Query")
     submit_button = st.form_submit_button(label='Query')
-
 
 if submit_button:
     try:
@@ -29,6 +30,8 @@ if submit_button:
 
 if "req" in st.session_state:
     data = st.session_state["req"]
+
+    st.subheader(f"{len(data)} rows returned:")
     st.write(data)
     with st.expander("Options"):
         

@@ -33,6 +33,7 @@ with st.form(key="query"):
     submit_button = st.form_submit_button(label='Query')
 
 if submit_button:
+    
     try:
         con = sql.connect("sales_data.db")
         data = pd.read_sql_query(query,con)
@@ -48,7 +49,11 @@ if "req" in st.session_state:
     data = st.session_state["req"]
 
     st.subheader(f"{len(data)} rows returned:")
-    st.write(data)
+
+    if len(data)> 1000:
+        st.warning("Data too big, only showing first 1000 data points - consider making a graph")
+
+    st.write(data.head(1000))
     with st.expander("Options"):
         
 

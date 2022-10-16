@@ -12,6 +12,27 @@ st.title("SQL Dashboard")
 with st.expander("Chinook Schema",expanded=False):
     st.image("https://www.sqlitetutorial.net/wp-content/uploads/2015/11/sqlite-sample-database-color.jpg")
 
+questions = [
+ " ## Select everything from the tracks table",
+ " ## List tracks names where UnitPrice is (strictly) above 0.99",
+ " ## For all customers, find their company names (without duplicates)",
+ " ## For each tracks, get their name, their lenght in milliseconds, and their album id. Order them by album id in ascending order",
+ " ## Extract the trackid and name of the first 10 tracks (in the tracks table)",
+ " ## Extract the name, the lengh, the size in bytes and the album id of each track which lengh is greater than 250000 millisecond and which are from album id 1",
+ " ## Extract the name, the album id and the composer of each track which composer's name contains 'smith'. Order the result by ascending album id",
+ " ## Extract the trackid, the name of each track which name ends with the word 'Wild'",
+ " ## Extract the trackid, the name of each track which contains the word 'Wild'",
+ " ## Extract the trackid, the name and genre id of each track that are NOT from genre 1 , 2 OR 3",
+ " ## Select the TrackId, Track name, Album and Artist of artist whose id is 10",
+ " ## Count how much invoices has each customer",
+ " ## Which artists have written the most albums ?"
+]
+
+a = st.tabs([ f"Question {i}" for i in range(len(questions))])
+
+for tab,q in zip(a,questions):
+    tab.markdown(q)
+
 with st.form(key="query"):
     query = st.text_area("Enter Query")
     submit_button = st.form_submit_button(label='Query')
